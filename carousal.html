@@ -1,0 +1,53 @@
+<div class="carousel-nav clearfix">
+    <img src="img/prev.png" id="prv-testimonial" alt="PREV" />
+    <img src="img/next.png" id="nxt-testimonial" alt="NEXT" />
+</div>
+<div id="carousel-wrap">
+  <ul id="testimonial-list" class="clearfix">
+    <li>
+      <p class="context">Some testimonial goes right here[1]</p>
+      <span class="creds">Tiffany LastName</span>
+    </li>
+    <li>
+      <p class="context">"We could not be more pleased. A++ efforts!"</p>
+      <span class="creds">Alan Goodwrench</span>
+    </li>
+    <li>
+      <p class="context">"After just one purchase, we know this is the company to stick with."</p>
+      <span class="creds">Butters Stotch</span>
+    </li>
+  </ul>
+</div>
+
+$('#prv-testimonial').on('click', function(){
+    var $last = $('#testimonial-list li:last');
+    $last.remove().css({ 'margin-left': '-400px' });
+    $('#testimonial-list li:first').before($last);
+    $last.animate({ 'margin-left': '0px' }, 1000);
+});
+
+$('#nxt-testimonial').on('click', function(){
+    var $first = $('#testimonial-list li:first');
+    $first.animate({ 'margin-left': '-400px' }, 1000, function() {
+        $first.remove().css({ 'margin-left': '0px' });
+        $('#testimonial-list li:last').after($first);
+    });
+});
+
+#carousel-wrap {
+    border: 1px solid #000;
+    width: 400px;
+    overflow: hidden;
+}
+
+#testimonial-list {
+    overflow: hidden;
+    padding: 10px;
+    width: 1600px;
+}
+#testimonial-list>li {
+    overflow: hidden;
+    padding: 0;
+    width: 400px;
+    display: inline-block;
+}
